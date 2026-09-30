@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Nil Yollarda">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <title>Nil Anka ♥</title>
+  <style>
+    :root{
+      color-scheme: light;
+      --bg:#8f684f;
+      --card:rgba(255,248,236,.94);
+      --card-solid:#fff8ec;
+      --text:#2b2321;
+      --muted:#7d6658;
+      --line:rgba(67,46,38,.16);
+      --accent:#d99a38;
+      --accent-strong:#a96618;
+      --dark:#312725;
+      --rose:#b7555b;
+      --ok:#34785f;
+      --danger:#a43e37;
+      --shadow:0 16px 42px rgba(40,25,18,.24);
+    }
+    *{box-sizing:border-box}
+    html{
+      min-height:100%;
+      background:#8f684f url("./leopard-bg.webp") repeat;
+      background-size:300px 300px;
+    }
+    body{
+      margin:0;
+      min-height:100%;
+      color:var(--text);
+      font-family:"Avenir Next","Avenir","SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        linear-gradient(rgba(39,27,24,.18),rgba(39,27,24,.18)),
+        transparent;
+    }
+    .wrap{max-width:760px;margin:0 auto;padding:26px 16px 44px}
+    .top{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      margin-bottom:18px;padding:4px 4px 2px
+    }
+    h1{
+      font-size:27px;line-height:1.15;margin:0;color:#fff9ed;
+      letter-spacing:-.02em;text-shadow:0 2px 12px rgba(38,25,20,.45);font-weight:800
+    }
+    .brand-heart{color:#f4c2b8;font-size:.9em;margin-right:2px}
+    .brand-plane{
+      display:inline-flex;align-items:center;justify-content:center;
+      font-size:.72em;margin-left:4px;transform:rotate(-8deg);
+      color:#ffd27b
+    }
+    .subtitle{
+      color:rgba(255,249,237,.86);font-size:13px;margin-top:5px;
+      text-shadow:0 1px 7px rgba(38,25,20,.4)
+    }
+    .iconbtn{
+      border:1px solid rgba(255,255,255,.28);
+      background:rgba(45,34,31,.50);backdrop-filter:blur(10px);
+      color:#fff8ec;border-radius:14px;padding:10px 12px;font-size:16px;cursor:pointer
+    }
+    .card{
+      position:relative;overflow:hidden;
+      background:var(--card);border:1px solid rgba(255,255,255,.46);
+      border-radius:24px;padding:21px;box-shadow:var(--shadow);
+      margin-bottom:16px;backdrop-filter:blur(14px)
+    }
+    .card::before{
+      content:"";position:absolute;left:0;right:0;top:0;height:4px;
+      background:linear-gradient(90deg,#2f2523 0 28%,#d99a38 28% 52%,#a77a61 52% 74%,#2f2523 74%)
+    }
+    .eyebrow{
+      font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--accent-strong);font-weight:800
+    }
+    .place{
+      font-size:35px;line-height:1.08;font-weight:800;margin:7px 0 11px;
+      overflow-wrap:anywhere;letter-spacing:-.025em
+    }
+    .status{
+      display:inline-flex;align-items:center;gap:7px;
+      background:#f6dfb9;color:#4b342a;border:1px solid rgba(113,75,37,.10);
+      border-radius:999px;padding:8px 12px;font-weight:800;font-size:14px
+    }
+    .next{
+      display:grid;grid-template-columns:1fr;gap:10px;margin-top:19px;
+      padding-top:17px;border-top:1px solid var(--line)
+    }
+    .next strong{font-size:20px;overflow-wrap:anywhere;letter-spacing:-.015em}
+    .row{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+    .updated{font-size:12px;color:var(--muted);margin-top:14px}
+    form{display:grid;gap:14px}
+    label{display:grid;gap:7px;font-size:14px;font-weight:750}
+    input,select,textarea{
+      width:100%;min-height:47px;border:1px solid var(--line);
+      background:#fffaf2;color:var(--text);border-radius:13px;
+      padding:11px 12px;font:inherit;font-size:16px;outline:none
+    }
+    textarea{min-height:80px;resize:vertical}
+    input:focus,select:focus,textarea:focus{
+      border-color:#c7882e;box-shadow:0 0 0 3px rgba(217,154,56,.16)
+    }
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .btn{
+      min-height:49px;border:0;border-radius:14px;padding:12px 16px;
+      font:inherit;font-weight:850;cursor:pointer;
+      background:linear-gradient(135deg,#3a2c28,#5c4339);color:#fff7ec;
+      box-shadow:0 8px 20px rgba(52,36,31,.16)
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn.secondary{
+      background:rgba(255,248,236,.92);color:var(--dark);
+      border:1px solid rgba(255,255,255,.45);box-shadow:var(--shadow)
+    }
+    .btn.danger{background:transparent;color:var(--danger);border:1px solid var(--line);box-shadow:none}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .actions .btn{flex:1}
+    .msg{font-size:14px;border-radius:12px;padding:11px 12px;margin-top:10px}
+    .msg.ok{background:rgba(52,120,95,.10);color:var(--ok)}
+    .msg.err{background:rgba(164,62,55,.10);color:var(--danger)}
+    .hidden{display:none!important}
+    .setup-note{font-size:14px;color:var(--muted);line-height:1.55}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
+    .badge{font-size:12px;color:var(--muted);font-weight:700}
+    h2{letter-spacing:-.02em}
+    @media(max-width:520px){
+      html{background-size:250px 250px}
+      .wrap{padding:18px 12px 36px}
+      .card{padding:18px;border-radius:21px}
+      .place{font-size:31px}
+      .grid2{grid-template-columns:1fr}
+      h1{font-size:23px}
+      .subtitle{font-size:12px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div>
+        <h1><span class="brand-heart">♥</span> Nil Anka <span class="brand-plane">✈</span></h1>
+        <div class="subtitle">Yollarda, ama hep bir dokunuş uzağında.</div>
+      </div>
+      <button id="settingsBtn" class="iconbtn hidden" type="button" aria-label="Ayarlar">⚙️</button>
+    </div>
+
+    <section id="setupCard" class="card">
+      <div class="eyebrow">İlk kurulum</div>
+      <h2>Nil Anka'ya bağlan ♥</h2>
+      <p class="setup-note">
+        Bu bilgiler sadece bu cihazın tarayıcısında saklanır.
+        <strong>VIEW</strong> token görüntüleme içindir; <strong>EDIT</strong> token güncelleme yetkisi verir.
+        Supabase <strong>secret/service_role</strong> anahtarını buraya asla yazma.
+      </p>
+      <form id="setupForm">
+        <label>Supabase Project URL
+          <input id="projectUrl" type="url" autocomplete="off" placeholder="https://xxxx.supabase.co" required>
+        </label>
+        <label>Publishable key
+          <input id="publishableKey" type="password" autocomplete="off" placeholder="sb_publishable_..." required>
+        </label>
+        <label>Access token
+          <input id="accessToken" type="password" autocomplete="off" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" required>
+        </label>
+        <button class="btn" type="submit">Bağla ve aç</button>
+      </form>
+      <div id="setupMsg" aria-live="polite"></div>
+    </section>
+
+    <section id="viewer" class="hidden">
+      <section class="card">
+        <div class="eyebrow">Nil Anka şu an</div>
+        <div id="currentPlace" class="place">—</div>
+        <div id="statusBadge" class="status">⌛ Yükleniyor</div>
+
+        <div class="next">
+          <div class="eyebrow">Sıradaki rota ✈</div>
+          <strong id="nextPlace">—</strong>
+          <div id="flightInfo" class="row"></div>
+        </div>
+
+        <div id="noteLine" class="updated hidden"></div>
+        <div id="updatedAt" class="updated">—</div>
+      </section>
+
+      <section id="editorCard" class="card hidden">
+        <div class="eyebrow">Hızlı güncelleme</div>
+        <h2 style="margin-top:6px">Neredesin, nereye gidiyorsun?</h2>
+        <form id="editForm">
+          <label>📍 Şu an
+            <input id="editCurrent" list="recentPlaces" maxlength="120" placeholder="Örn. Dubai, BAE" required>
+          </label>
+          <label>✈️ Sonraki
+            <input id="editNext" list="recentPlaces" maxlength="120" placeholder="Örn. İstanbul, Türkiye">
+          </label>
+          <datalist id="recentPlaces"></datalist>
+
+          <label>Durum
+            <select id="editStatus">
+              <option value="staying">🏨 Konaklamada</option>
+              <option value="going_to_airport">🚕 Havalimanına gidiyor</option>
+              <option value="flying">✈️ Uçuşta</option>
+              <option value="landed">🛬 İndi</option>
+              <option value="home">🏠 Evde</option>
+              <option value="off">🌴 İzinli</option>
+              <option value="unknown">📍 Durum belirtilmedi</option>
+            </select>
+          </label>
+
+          <div class="grid2">
+            <label>Uçuş tarihi
+              <input id="editDate" type="date">
+            </label>
+            <label>Uçuş saati
+              <input id="editTime" type="time">
+            </label>
+          </div>
+
+          <label>Uçuş no. <span class="badge">(isteğe bağlı)</span>
+            <input id="editFlight" maxlength="20" placeholder="Örn. TK764">
+          </label>
+
+          <label>Not <span class="badge">(isteğe bağlı)</span>
+            <textarea id="editNote" maxlength="240" placeholder="Kısa not"></textarea>
+          </label>
+
+          <button id="saveBtn" class="btn" type="submit">Güncelle ❤️</button>
+        </form>
+        <div id="editMsg" aria-live="polite"></div>
+      </section>
+
+      <div class="actions">
+        <button id="refreshBtn" class="btn secondary" type="button">↻ Yenile</button>
+      </div>
+    </section>
+  </main>
+
+<script>
+(() => {
+  "use strict";
+  const CFG_KEY = "nil-anka-config-v1";
+  const RECENT_KEY = "nil-anka-recent-places-v1";
+
+  const $ = (id) => document.getElementById(id);
+  const setupCard = $("setupCard");
+  const viewer = $("viewer");
+  const settingsBtn = $("settingsBtn");
+  const editorCard = $("editorCard");
+
+  const statusMap = {
+    unknown: ["📍", "Durum belirtilmedi"],
+    staying: ["🏨", "Konaklamada"],
+    going_to_airport: ["🚕", "Havalimanına gidiyor"],
+    flying: ["✈️", "Uçuşta"],
+    landed: ["🛬", "İndi"],
+    home: ["🏠", "Evde"],
+    off: ["🌴", "İzinli"]
+  };
+
+  let cfg = null;
+  let lastData = null;
+
+  function msg(node, text, type) {
+    node.innerHTML = "";
+    if (!text) return;
+    const d = document.createElement("div");
+    d.className = "msg " + (type || "");
+    d.textContent = text;
+    node.appendChild(d);
+  }
+
+  function normalizeUrl(url) {
+    return String(url || "").trim().replace(/\/+$/, "");
+  }
+
+  function isUuid(s) {
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(String(s || "").trim());
+  }
+
+  async function rpc(name, payload, useCfg = cfg) {
+    if (!useCfg) throw new Error("Ayar bulunamadı.");
+    const url = normalizeUrl(useCfg.projectUrl) + "/rest/v1/rpc/" + name;
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "apikey": useCfg.publishableKey,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const text = await res.text();
+    let data = null;
+    try { data = text ? JSON.parse(text) : null; } catch { data = text; }
+
+    if (!res.ok) {
+      const detail = data && (data.message || data.hint || data.details);
+      throw new Error(detail || ("Bağlantı hatası (" + res.status + ")"));
+    }
+    return data;
+  }
+
+  function fmtDate(dateStr) {
+    if (!dateStr) return "";
+    const parts = String(dateStr).split("-");
+    if (parts.length !== 3) return dateStr;
+    const d = new Date(Date.UTC(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2])));
+    return new Intl.DateTimeFormat("tr-TR", { day:"numeric", month:"short", year:"numeric", timeZone:"UTC" }).format(d);
+  }
+
+  function fmtTime(t) {
+    if (!t) return "";
+    return String(t).slice(0,5);
+  }
+
+  function fmtUpdated(ts) {
+    if (!ts) return "Son güncelleme bilinmiyor";
+    const d = new Date(ts);
+    if (Number.isNaN(d.getTime())) return "Son güncelleme bilinmiyor";
+    return "Son güncelleme: " + new Intl.DateTimeFormat("tr-TR", {
+      day:"numeric", month:"short", hour:"2-digit", minute:"2-digit"
+    }).format(d);
+  }
+
+  function render(data) {
+    lastData = data;
+    $("currentPlace").textContent = data.current_place || "—";
+    const st = statusMap[data.status] || statusMap.unknown;
+    $("statusBadge").textContent = st[0] + " " + st[1];
+    $("nextPlace").textContent = data.next_place || "Plan girilmedi";
+
+    const bits = [];
+    if (data.flight_number) bits.push("✈️ " + data.flight_number);
+    const date = fmtDate(data.flight_date);
+    const time = fmtTime(data.flight_time);
+    if (date) bits.push("📅 " + date);
+    if (time) bits.push("🕐 " + time);
+    $("flightInfo").textContent = bits.join("  •  ") || "Uçuş bilgisi girilmedi";
+
+    const noteLine = $("noteLine");
+    if (data.note) {
+      noteLine.textContent = "📝 " + data.note;
+      noteLine.classList.remove("hidden");
+    } else {
+      noteLine.classList.add("hidden");
+      noteLine.textContent = "";
+    }
+    $("updatedAt").textContent = fmtUpdated(data.updated_at);
+
+    if (data.can_edit) {
+      editorCard.classList.remove("hidden");
+      $("editCurrent").value = data.current_place === "Henüz güncellenmedi" ? "" : (data.current_place || "");
+      $("editNext").value = data.next_place || "";
+      $("editStatus").value = data.status || "unknown";
+      $("editDate").value = data.flight_date || "";
+      $("editTime").value = fmtTime(data.flight_time);
+      $("editFlight").value = data.flight_number || "";
+      $("editNote").value = data.note || "";
+    } else {
+      editorCard.classList.add("hidden");
+    }
+  }
+
+  async function loadStatus() {
+    const rows = await rpc("get_travel_status", { p_token: cfg.accessToken });
+    const data = Array.isArray(rows) ? rows[0] : rows;
+    if (!data) throw new Error("Durum kaydı bulunamadı.");
+    render(data);
+  }
+
+  function loadRecent() {
+    let arr = [];
+    try { arr = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]"); } catch {}
+    if (!Array.isArray(arr)) arr = [];
+    const dl = $("recentPlaces");
+    dl.innerHTML = "";
+    arr.slice(0, 12).forEach((p) => {
+      const o = document.createElement("option");
+      o.value = p;
+      dl.appendChild(o);
+    });
+  }
+
+  function addRecent(...places) {
+    let arr = [];
+    try { arr = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]"); } catch {}
+    if (!Array.isArray(arr)) arr = [];
+    const clean = places.map(x => String(x || "").trim()).filter(Boolean);
+    arr = [...clean, ...arr].filter((x, i, a) => a.findIndex(y => y.toLowerCase() === x.toLowerCase()) === i).slice(0, 12);
+    localStorage.setItem(RECENT_KEY, JSON.stringify(arr));
+    loadRecent();
+  }
+
+  async function connect(e) {
+    e.preventDefault();
+    msg($("setupMsg"), "", "");
+    const candidate = {
+      projectUrl: normalizeUrl($("projectUrl").value),
+      publishableKey: $("publishableKey").value.trim(),
+      accessToken: $("accessToken").value.trim()
+    };
+
+    if (!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(candidate.projectUrl)) {
+      msg($("setupMsg"), "Project URL beklenen Supabase formatında değil.", "err");
+      return;
+    }
+    if (!candidate.publishableKey.startsWith("sb_publishable_") && !candidate.publishableKey.startsWith("eyJ")) {
+      msg($("setupMsg"), "Publishable key geçerli görünmüyor. Secret/service_role anahtarı kullanma.", "err");
+      return;
+    }
+    if (!isUuid(candidate.accessToken)) {
+      msg($("setupMsg"), "Access token geçerli UUID formatında değil.", "err");
+      return;
+    }
+
+    const btn = $("setupForm").querySelector("button");
+    btn.disabled = true;
+    btn.textContent = "Bağlanıyor…";
+    try {
+      const rows = await rpc("get_travel_status", { p_token: candidate.accessToken }, candidate);
+      const data = Array.isArray(rows) ? rows[0] : rows;
+      if (!data) throw new Error("Durum verisi alınamadı.");
+      localStorage.setItem(CFG_KEY, JSON.stringify(candidate));
+      cfg = candidate;
+      setupCard.classList.add("hidden");
+      viewer.classList.remove("hidden");
+      settingsBtn.classList.remove("hidden");
+      render(data);
+      loadRecent();
+    } catch (err) {
+      msg($("setupMsg"), err.message || "Bağlantı kurulamadı.", "err");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Bağla ve aç";
+    }
+  }
+
+  async function saveStatus(e) {
+    e.preventDefault();
+    msg($("editMsg"), "", "");
+    const current = $("editCurrent").value.trim();
+    const next = $("editNext").value.trim();
+    if (!current) {
+      msg($("editMsg"), "Şu an bulunduğun yeri yaz.", "err");
+      return;
+    }
+
+    const btn = $("saveBtn");
+    btn.disabled = true;
+    btn.textContent = "Kaydediliyor…";
+    try {
+      const rows = await rpc("set_travel_status", {
+        p_token: cfg.accessToken,
+        p_current_place: current,
+        p_next_place: next || null,
+        p_flight_date: $("editDate").value || null,
+        p_flight_time: $("editTime").value || null,
+        p_status: $("editStatus").value,
+        p_flight_number: $("editFlight").value.trim() || null,
+        p_note: $("editNote").value.trim() || null
+      });
+      const data = Array.isArray(rows) ? rows[0] : rows;
+      if (data) render(data);
+      addRecent(current, next);
+      msg($("editMsg"), "Güncellendi ✓", "ok");
+    } catch (err) {
+      msg($("editMsg"), err.message || "Kaydedilemedi.", "err");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Güncelle ❤️";
+    }
+  }
+
+  function resetConfig() {
+    const ok = confirm("Bu cihazdaki bağlantı ayarları silinsin mi?");
+    if (!ok) return;
+    localStorage.removeItem(CFG_KEY);
+    location.reload();
+  }
+
+  $("setupForm").addEventListener("submit", connect);
+  $("editForm").addEventListener("submit", saveStatus);
+  $("refreshBtn").addEventListener("click", async () => {
+    const b = $("refreshBtn");
+    b.disabled = true;
+    b.textContent = "Yenileniyor…";
+    try { await loadStatus(); }
+    catch (err) { alert(err.message || "Yenilenemedi."); }
+    finally { b.disabled = false; b.textContent = "↻ Yenile"; }
+  });
+  settingsBtn.addEventListener("click", resetConfig);
+
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  }
+
+  try {
+    cfg = JSON.parse(localStorage.getItem(CFG_KEY) || "null");
+  } catch { cfg = null; }
+
+  if (cfg && cfg.projectUrl && cfg.publishableKey && isUuid(cfg.accessToken)) {
+    setupCard.classList.add("hidden");
+    viewer.classList.remove("hidden");
+    settingsBtn.classList.remove("hidden");
+    loadRecent();
+    loadStatus().catch((err) => {
+      viewer.classList.add("hidden");
+      setupCard.classList.remove("hidden");
+      settingsBtn.classList.add("hidden");
+      msg($("setupMsg"), "Kayıtlı bağlantı çalışmadı: " + (err.message || "Bilinmeyen hata"), "err");
+      $("projectUrl").value = cfg.projectUrl || "";
+      $("publishableKey").value = cfg.publishableKey || "";
+      $("accessToken").value = cfg.accessToken || "";
+    });
+    setInterval(() => {
+      if (!document.hidden) loadStatus().catch(() => {});
+    }, 60000);
+  }
+})();
+</script>
+</body>
+</html>
